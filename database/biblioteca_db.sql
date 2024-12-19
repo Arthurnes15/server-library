@@ -35,9 +35,8 @@ CREATE TABLE livros (
 
 CREATE TABLE usuarios (
 	id_usuario INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nome_usuario VARCHAR(100),
-    email_usuario VARCHAR(45),
-    senha_usuario VARCHAR(150)
+    nome_usuario VARCHAR(255) UNIQUE,
+    senha_usuario VARCHAR(255)
 );
 
 CREATE TABLE turmas (
@@ -70,7 +69,7 @@ CREATE TABLE alugueis (
     FOREIGN KEY (livro_id) REFERENCES livros(id_livro),
     FOREIGN KEY (status_id) REFERENCES status(id_status)
 );
-ALTER TABLE alugueis MODIFY data_devolucao date;
+
 SELECT * FROM alugueis;
 
 -- CADASTRO DE AUTORES
@@ -171,14 +170,14 @@ VALUES ("Contabilidade 1"),
 ("Contabilidade 3"),
 ("Desenvolvimento de Sistemas 1"),
 ("Desenvolvimento de Sistemas 2"),
+("Desenvolvimento de Sistemas 3"),
 ("Multimídia 1"),
 ("Multimídia 2"),
 ("Multimídia 3"),
-("Redes de Computadores"),
-("Informática 3");
+("Redes de Computadores");
 
 -- SELECIONA AS TURMAS
-SELECT * FROM turmas;
+SELECT * FROM turmas ORDER BY id_turma ASC;
 
 -- CADASTRO DE ALUNOS
 INSERT INTO alunos (nome_aluno, email_aluno, turma_id) 
