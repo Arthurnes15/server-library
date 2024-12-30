@@ -6,7 +6,7 @@ import cors from "cors";
 import routes from './routes/routes.js';
 import authentication from './routes/auth/authentication.js';
 
-const port = process.env.PORT || 3001;
+const port = process.env.SERVER_PORT || 3001;
 
 const corsOptions = {
     origin: process.env.CORS_URL,
@@ -21,5 +21,5 @@ app.use('/auth', authentication);
 app.use(routes);
 
 app.listen(port, () => {
-    console.log("rodando servidor")
+    console.log("Server running")
 });
