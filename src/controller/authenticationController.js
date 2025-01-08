@@ -30,8 +30,8 @@ export async function login(req, res) {
         if (!passwordMatch) {
             return res.status(401).send('Invalid username or password');
         };
-        const token = jwt.sign({ username: user.nome_usuario }, process.env.SECRET_KEY, { expiresIn: '1h' });
-        res.json({ token, name: user.nome_usuario });
+        const token = jwt.sign({ username: user.nome_usuario, position: user.cargo }, process.env.SECRET_KEY, { expiresIn: '1h' });
+        res.json({ token });
         res.status(200);
     } catch (error) {
         console.log(error)

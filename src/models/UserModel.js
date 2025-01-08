@@ -10,9 +10,9 @@ export async function getUser(username) {
     });
 };
 
-export async function setUser(username, password) {
+export async function setUser(username, password, position) {
     return new Promise((resolve) => {
-        let SQL = `INSERT INTO usuarios(nome_usuario, senha_usuario) VALUES('${username}', '${password}');`
+        let SQL = `INSERT INTO usuarios(nome_usuario, senha_usuario, cargo) VALUES('${username}', '${password}', '${position}');`
 
         db.query(SQL, async (err, results) => {
             if (err) throw err;

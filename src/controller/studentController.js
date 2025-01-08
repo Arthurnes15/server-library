@@ -1,4 +1,3 @@
-import { renewRent } from "../models/RentModel.js";
 import { editStudent, getStudent, removeStudent, setStudent } from "../models/StudentModel.js";
 
 export async function registerStudent(req, res) {
@@ -27,7 +26,6 @@ export async function selectStudent(req, res) {
 export async function updateStudent(req, res) {
     try {
         const { id, name, email, group } = req.body;
-
         await editStudent(id, name, email, group);
         res.status(200).send('Student updated');
     } catch (error) {
