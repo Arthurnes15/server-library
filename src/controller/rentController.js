@@ -1,14 +1,18 @@
-import { editStatusRent, getRents, getRentsPending, getRentsReturned, getStatus, removeRent, setRent } from "../models/RentModel.js";
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
+
+import { editStatusRent, getRents, getRentsPending, getRentsReturned, getStatus, removeRent, setRent, renewRent } from "../models/RentModel.js";
 
 export async function rent(req, res) {
     try {
         const { responsible, book_id, student, status, date_return } = req.body;
 
         await setRent(responsible, book_id, student, status, date_return);
-    
+
         res.status(201).send('Rent registered');
     }
-    catch(error) {
+    catch (error) {
         console.log(error);
         res.status(500).send('Error renting');
     };
@@ -68,11 +72,11 @@ export async function updateStatusRent(req, res) {
 };
 
 export async function updateDateRent(req, res) {
-    try {   
+    try {
         const { rent_id, date_return } = req.body;
 
         await renewRent(rent_id, date_return);
-        
+
         res.status(200).send('Rent renewed');
     } catch (error) {
         console.log(error);
@@ -81,11 +85,11 @@ export async function updateDateRent(req, res) {
 };
 
 export async function deleteRent(req, res) {
-    try {   
+    try {
         const { id } = req.params;
 
         await removeRent(id);
-        
+
         res.status(200).send('Rent removed');
     } catch (error) {
         console.log(error);

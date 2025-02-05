@@ -4,7 +4,7 @@ import { getUser } from '../models/UserModel.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
-export function authenticateToken(req, res, next) {
+export function authenticateToken(req, res) {
     const token = req.headers?.authorization ?? '';
     if (!token) {
         return res.status(401).send('Access denied');
@@ -34,7 +34,7 @@ export async function login(req, res) {
         res.json({ token });
         res.status(200);
     } catch (error) {
-        console.log(error)
+        console.log(error);
         res.status(500).send('Error logging in');
     };
 };
