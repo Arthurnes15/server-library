@@ -1,8 +1,4 @@
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
-dotenv.config();
-
-import { editStatusRent, getRents, getRentsPending, getRentsReturned, getStatus, removeRent, setRent, renewRent } from "../models/RentModel.js";
+import { editStatusRent, getRents, getRentsPending, getRentsReturned, getStatus, removeRent, setRent, renewRent, getRentsDates } from "../models/RentModel.js";
 
 export async function rent(req, res) {
     try {
@@ -55,6 +51,16 @@ export async function selectStatus(req, res) {
     } catch (error) {
         console.log(error);
         res.status(500).send('Error selecting status');
+    }
+}
+
+export async function selectRentsDates(req, res) {
+    try {
+        const rent = await getRentsDates();
+        res.status(200).send(rent);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Error selecting return date');
     }
 }
 

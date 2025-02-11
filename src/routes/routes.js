@@ -3,7 +3,7 @@ const router = express.Router();
 import { registerUser } from '../controller/userController.js';
 import { deleteBooks, registerAuthor, registerBook, registerPublisher, selectAllBooks, selectAuthors, selectBooks, selectGenders, selectPublishers, updateBooks } from '../controller/bookController.js';
 import { deleteStudent, registerStudent, selectStudent, updateStudent } from '../controller/studentController.js';
-import { deleteRent, rent, selectRents, selectRentsPending, selectRentsReturned, selectStatus, updateDateRent, updateStatusRent } from '../controller/rentController.js';
+import { deleteRent, rent, selectRents, selectRentsDates, selectRentsPending, selectRentsReturned, selectStatus, updateDateRent, updateStatusRent } from '../controller/rentController.js';
 import { selectGroup, selectGroupOrderName, updateGroup } from '../controller/groupController.js';
 
 //POST ROUTES
@@ -26,6 +26,7 @@ router.get('/getGroupsOrderName', selectGroupOrderName);
 router.get('/getRents', selectRents);
 router.get('/getRentsPending', selectRentsPending);
 router.get('/getRentsReturned', selectRentsReturned);
+router.get('/getRentsDates', selectRentsDates);
 router.get('/getStatus', selectStatus);
 
 // PUT ROUTES

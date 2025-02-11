@@ -56,6 +56,17 @@ export async function getStatus() {
     });
 };
 
+export async function getRentsDates() {
+    return new Promise((resolve) => {
+        let SQL = "SELECT id_aluguel, data_devolucao FROM alugueis WHERE status_id != 3;"
+
+        db.query(SQL, (err, result) => {
+            if (err) throw err;
+            resolve(result);
+        });
+    })
+}
+
 export async function editStatusRent(status_id, rent_id) {
     return new Promise((resolve) => {
         let SQL = `UPDATE alugueis SET status_id=${status_id} WHERE id_aluguel=${rent_id}`
@@ -80,7 +91,7 @@ export async function renewRent(rent_id, date_return) {
 
 export async function removeRent(id) {
     return new Promise((resolve) => {
-        let SQL =  `DELETE FROM alugueis WHERE id_aluguel = ${id}`;
+        let SQL = `DELETE FROM alugueis WHERE id_aluguel = ${id}`;
 
         db.query(SQL, async (err, results) => {
             if (err) throw err;
