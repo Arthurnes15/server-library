@@ -2,8 +2,8 @@ import { editStudent, getStudent, removeStudent, setStudent } from "../models/St
 
 export async function registerStudent(req, res) {
     try {
-        const { name, email, group } = req.body;
-        await setStudent(name, email, group);
+        const { name, email, phone_number, group } = req.body;
+        await setStudent(name, email, phone_number, group);
 
         res.status(201).send('Student registered');
 
@@ -25,8 +25,8 @@ export async function selectStudent(req, res) {
 
 export async function updateStudent(req, res) {
     try {
-        const { id, name, email, group } = req.body;
-        await editStudent(id, name, email, group);
+        const { id, name, email, group, phone_number } = req.body;
+        await editStudent(id, name, email, phone_number, group);
         res.status(200).send('Student updated');
     } catch (error) {
         console.log(error);
